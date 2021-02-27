@@ -32,7 +32,6 @@ public class TestController {
     @ApiOperation(value = "测试")
     @GetMapping("/test")
     public Result<List<TestTable>> call(@Validated IndustryMonitorAddReq req, HttpServletRequest request) {
-        log.info("------------");
         try {
             List<TestTable> result = tableService.getAll();
             return Result.success(result);
