@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxy.commerce.product.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dxy.commerce.product.domain.UserInfo">
+        <id column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="name" property="name" />
+        <result column="mobile" property="mobile" />
+        <result column="db_salt" property="dbSalt" />
+        <result column="token_salt" property="tokenSalt" />
+        <result column="create_time" property="createTime" />
+        <result column="modified_time" property="modifiedTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, account, name, mobile, status, password, db_salt, token_salt, create_time, modified_time
+    </sql>
+
+</mapper>

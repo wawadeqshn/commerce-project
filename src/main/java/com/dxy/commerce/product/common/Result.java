@@ -1,8 +1,14 @@
 package com.dxy.commerce.product.common;
 
+import com.google.gson.Gson;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
+import org.apache.shiro.web.util.WebUtils;
 
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 
 /**
@@ -74,5 +80,24 @@ public class Result<T> implements Serializable {
     public void setResultCode(ResultCode code) {
         this.ret_code = code.code();
         this.ret_msg = code.message();
+    }
+
+    /**
+     * 将异常信息写到response中
+     *
+     * @param response
+     * @param code
+     */
+    public static void writeErrorInfoToResponse(ServletResponse response, ResultCode code) {
+
+        HttpServletResponse httpResponse = WebUtils.toHttp(response);
+        String contentType = "application/json;charset=UTF-8";
+        httpResponse.setContentType(contentType);
+        try {
+            PrintWriter printWriter = httpResponse.getWriter();
+            printWriter.append(new Gson().toJson(Result.failure(code)));
+        } catch (IOException e) {
+            log.error(e.getMessage());
+        }
     }
 }

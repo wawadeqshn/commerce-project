@@ -15,7 +15,7 @@ import java.util.Map;
  * @author dingxy
  * @date 2021/2/27 10:16 下午
  */
-@ControllerAdvice
+/*@ControllerAdvice
 public class ErrorHandler {
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) //返回的状态码
@@ -26,4 +26,4 @@ public class ErrorHandler {
         info.put("item",new Date().getTime());
         return  info;
     }
-}
+}*/
