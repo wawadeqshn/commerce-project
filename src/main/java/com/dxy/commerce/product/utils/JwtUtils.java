@@ -67,15 +67,11 @@ public class JwtUtils {
      * @return 加密的token
      */
     public static String sign(String account, String salt, long time) {
-        try {
-            Date date = new Date(System.currentTimeMillis() + time * 1000);
-            Algorithm algorithm = Algorithm.HMAC256(salt);
-            // 附带username信息
-            return JWT.create().withClaim("account", account).withExpiresAt(date).withIssuedAt(new Date())
-                    .sign(algorithm);
-        } catch (UnsupportedEncodingException e) {
-            return null;
-        }
+        Date date = new Date(System.currentTimeMillis() + time * 1000);
+        Algorithm algorithm = Algorithm.HMAC256(salt);
+        // 附带username信息
+        return JWT.create().withClaim("account", account).withExpiresAt(date).withIssuedAt(new Date())
+                .sign(algorithm);
     }
 
 

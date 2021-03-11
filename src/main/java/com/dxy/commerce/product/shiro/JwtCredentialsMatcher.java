@@ -1,15 +1,14 @@
 package com.dxy.commerce.product.shiro;
 
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
+//import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.interfaces.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import lombok.extern.log4j.Log4j2;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
-
-import java.io.UnsupportedEncodingException;
 
 /**
  * @author xingxing
@@ -30,7 +29,7 @@ public class JwtCredentialsMatcher implements CredentialsMatcher {
             JWTVerifier verifier = JWT.require(algorithm).withClaim("account", account).build();
             verifier.verify(token);
             return true;
-        } catch (UnsupportedEncodingException | JWTVerificationException e) {
+        } catch (JWTVerificationException e) {
             log.error("Token Error:{}", e.getMessage());
         }
 

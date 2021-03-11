@@ -32,6 +32,8 @@ public class TestController {
     @ApiOperation(value = "测试")
     @GetMapping("/test")
     public Result<List<TestTable>> call(@Validated IndustryMonitorAddReq req, HttpServletRequest request) {
+        String token = request.getHeader("token");
+        System.out.println("token------------> "+token);
         try {
             List<TestTable> result = tableService.getAll();
             return Result.success(result);
