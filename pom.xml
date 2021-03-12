@@ -228,7 +228,7 @@
         </dependency>-->
 
         <!-- java安全框架shiro-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring-boot-web-starter</artifactId>
             <version>1.4.0</version>
@@ -246,7 +246,7 @@
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
 
         <!--字符串处理包-->
         <dependency>

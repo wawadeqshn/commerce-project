@@ -3,7 +3,7 @@ package com.dxy.commerce.product.common;
 import com.google.gson.Gson;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
-import org.apache.shiro.web.util.WebUtils;
+//import org.apache.shiro.web.util.WebUtils;
 
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
@@ -88,7 +88,7 @@ public class Result<T> implements Serializable {
      * @param response
      * @param code
      */
-    public static void writeErrorInfoToResponse(ServletResponse response, ResultCode code) {
+    /*public static void writeErrorInfoToResponse(ServletResponse response, ResultCode code) {
 
         HttpServletResponse httpResponse = WebUtils.toHttp(response);
         String contentType = "application/json;charset=UTF-8";
@@ -99,5 +99,5 @@ public class Result<T> implements Serializable {
         } catch (IOException e) {
             log.error(e.getMessage());
         }
-    }
+    }*/
 }

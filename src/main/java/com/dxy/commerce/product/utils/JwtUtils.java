@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import org.apache.shiro.crypto.SecureRandomNumberGenerator;
+//import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
@@ -95,8 +95,8 @@ public class JwtUtils {
      * @date 2021/2/27 11:03 下午 
      * @return java.lang.String
      */
-    public static String generateSalt() {
+    /*public static String generateSalt() {
         SecureRandomNumberGenerator secureRandom = new SecureRandomNumberGenerator();
         return secureRandom.nextBytes(16).toHex();
-    }
+    }*/
 }
