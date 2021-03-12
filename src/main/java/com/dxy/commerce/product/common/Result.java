@@ -89,7 +89,6 @@ public class Result<T> implements Serializable {
      * @param code
      */
     /*public static void writeErrorInfoToResponse(ServletResponse response, ResultCode code) {
-
         HttpServletResponse httpResponse = WebUtils.toHttp(response);
         String contentType = "application/json;charset=UTF-8";
         httpResponse.setContentType(contentType);
