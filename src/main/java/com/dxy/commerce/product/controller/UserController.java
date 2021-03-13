@@ -1,6 +1,8 @@
 package com.dxy.commerce.product.controller;
 
-import com.dxy.commerce.product.common.ApiJson;
+//import com.dxy.commerce.product.common.ApiJson;
+import com.dxy.commerce.product.common.Result;
+import com.dxy.commerce.product.common.ResultCode;
 import com.dxy.commerce.product.config.JwtConfigProperties;
 import com.dxy.commerce.product.domain.TestTable;
 import com.dxy.commerce.product.domain.UserInfo;
@@ -39,7 +41,7 @@ public class UserController {
 
     //@PostMapping("/login")
     @GetMapping("/login")
-    public ApiJson login(String username, String password){
+    public Result login(String username, String password){
         /*User user = userService.login(username, password);
         if (user != null){
             // 登录成功，返回token
@@ -47,24 +49,35 @@ public class UserController {
         }else {
             return ApiJson.error("登录失败");
         }*/
-        UserInfo user = new UserInfo();
+
+        /*UserInfo user = new UserInfo();
         if (user != null){
             // 登录成功，返回token
             return ApiJson.ok("登录成功", JWTUtil.sign(username, jwtConfigProperties));
         }else {
             return ApiJson.error("登录失败");
+        }*/
+
+        UserInfo user = new UserInfo();
+        if (user != null){
+            // 登录成功，返回token
+            return Result.success(JWTUtil.sign(username, jwtConfigProperties));
+        }else {
+            return Result.failure(ResultCode.FAIL_LOGGING);
         }
+
     }
 
-    /**
+    /** ApiJson
      * 未登录，没有token会重定向到这个方法来
      * @param msg
      * @return
      * @throws UnsupportedEncodingException
      */
     @GetMapping("/unlogin")
-    public ApiJson unlogin(String msg) throws UnsupportedEncodingException {
-        return ApiJson.error(new String(msg.getBytes(), "UTF-8"));
+    public Result unlogin(String msg) throws UnsupportedEncodingException {
+        //return ApiJson.error(new String(msg.getBytes(), "UTF-8"));
+        return Result.failure(ResultCode.SENSEDEAL_QUESTIONED);
     }
 
     /**
@@ -73,8 +86,14 @@ public class UserController {
      */
     @RequestMapping("/get/all")
     @ApiOperation(value = "查询所有用户")
-    public ApiJson getAllUsers(){
-        List<TestTable> result = tableService.getAll();
-        return result != null ? ApiJson.ok(result) : ApiJson.error();
+    public Result getAllUsers(){
+        /*List<TestTable> result = tableService.getAll();
+        return result != null ? ApiJson.ok(result) : ApiJson.error();*/
+        try {
+            List<TestTable> result = tableService.getAll();
+            return Result.success(result);
+        } catch (Exception e) {
+            return Result.failure(ResultCode.FAIL_LOGGING);
+        }
     }
 }

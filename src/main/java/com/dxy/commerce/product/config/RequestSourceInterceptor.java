@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-
 /**
  * 请求头中添加公共参数，例如 authorization 等请求字段的值
  * @author dingxy

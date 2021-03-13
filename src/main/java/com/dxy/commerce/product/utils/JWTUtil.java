@@ -8,6 +8,7 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.dxy.commerce.product.config.JwtConfigProperties;
+import com.dxy.commerce.product.constants.BusinessConstants;
 
 import java.util.Date;
 
@@ -25,17 +26,18 @@ public class JWTUtil {
             System.out.println(jwt);
             return true;
         } catch (TokenExpiredException tokenExpiredException){
-            throw new Exception(JwtVerifyConst.EXPIRED);
+            System.out.println("token已过期");
+            throw new Exception(BusinessConstants.EXPIRED);
         } catch (SignatureVerificationException signatureVerificationException){
-            System.out.println("token验证失败");
-            throw new Exception(JwtVerifyConst.SIGNATURE_VERIFICATION);
+            System.out.println("token签名失败");
+            throw new Exception(BusinessConstants.SIGNATURE_VERIFICATION);
         } catch (JWTDecodeException jwtDecodeException){
-            System.out.println("token解析失败");
-            throw new Exception(JwtVerifyConst.DECODE_ERROR);
-        }
-        catch (Exception exception) {
+            System.out.println("token解析失败，请重新登录获取token");
+            throw new Exception(BusinessConstants.DECODE_ERROR);
+        } catch (Exception exception) {
             exception.printStackTrace();
-            throw new Exception(JwtVerifyConst.NOT_LOGIN);
+            System.out.println("未登录");
+            throw new Exception(BusinessConstants.NOT_LOGIN);
         }
     }
 
@@ -66,15 +68,4 @@ public class JWTUtil {
                 .withExpiresAt(date)
                 .sign(algorithm);
     }
-}
-
-/**
- * 验证结果常量
- */
-class JwtVerifyConst{
-    public static String SUCCESS = "token验证成功";
-    public static String EXPIRED = "token已过期";
-    public static String SIGNATURE_VERIFICATION = "token签名失败";
-    public static String DECODE_ERROR = "token解析失败，请重新登录获取token";
-    public static String NOT_LOGIN = "未登录";
 }

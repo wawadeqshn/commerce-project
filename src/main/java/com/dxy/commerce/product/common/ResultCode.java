@@ -26,6 +26,9 @@ public enum ResultCode {
     PERMISSION_TOKEN_IS_NULL(70003, "TOKEN 不存在，请联系管理员！"),
     PERMISSION_BOARD_IS_FORBID(70004, "您暂无访问权限"),
 
+    //登陆失败
+    FAIL_LOGGING(40001, "登陆失败！"),
+
     //系统错误码
     SENSEDEAL_QUESTIONED(80001, "系统开了个小差，请稍后重试！");
 
