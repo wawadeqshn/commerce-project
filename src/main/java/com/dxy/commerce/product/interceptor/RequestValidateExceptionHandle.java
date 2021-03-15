@@ -21,7 +21,7 @@ import java.util.List;
  * @author dingxy
  * @date 2021/2/27 5:17 下午
  */
-@Slf4j
+/*@Slf4j
 @RestControllerAdvice
 public class RequestValidateExceptionHandle extends ResponseEntityExceptionHandler {
 
@@ -32,9 +32,9 @@ public class RequestValidateExceptionHandle extends ResponseEntityExceptionHandl
     }
 
 
-    /**
+    *//**
      * 解决 JSON 请求统一返回参数
-     */
+     *//*
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         return new ResponseEntity<>(getError(ex.getBindingResult().getAllErrors()) , status);
@@ -48,4 +48,4 @@ public class RequestValidateExceptionHandle extends ResponseEntityExceptionHandl
         return Result.failure(ResultCode.PARAM_IS_INVALID, message.substring(0, message.length() - 3));
     }
 
-}
+}*/

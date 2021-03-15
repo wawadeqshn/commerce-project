@@ -54,8 +54,9 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             errMsg = URLEncoder.encode(errMsg, "UTF-8");
             //这里是个坑，在重定向这里需要设置跨域，不然vue前端会报跨域问题
             response.setHeader("Access-Control-Allow-Origin", "*");
-            // 重定向到未登录提示页面
-            response.sendRedirect("/user/unlogin?msg=" + errMsg);
+            // 重定向到未登录提示页面。如果token验证失败，会调用这个方法。
+            response.sendRedirect("/common/error?msg=" + errMsg);
+            //response.sendRedirect("/user/unlogin?msg=" + errMsg);
             return false;
         }
         return true;

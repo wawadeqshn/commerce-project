@@ -26,11 +26,11 @@ public enum ResultCode {
     PERMISSION_TOKEN_IS_NULL(70003, "TOKEN 不存在，请联系管理员！"),
     PERMISSION_BOARD_IS_FORBID(70004, "您暂无访问权限"),
 
-    //登陆失败
-    FAIL_LOGGING(40001, "登陆失败！"),
+    //token信息错误
+    TOKEN_IS_ERROR(80001, "TOKEN 信息有错误，请检查后重试！"),
 
     //系统错误码
-    SENSEDEAL_QUESTIONED(80001, "系统开了个小差，请稍后重试！");
+    SENSEDEAL_QUESTIONED(90001, "系统开了个小差，请稍后重试！");
 
     private Integer code;
     private String message;

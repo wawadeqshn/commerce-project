@@ -56,14 +56,14 @@ public class JwtUtils {
         }
     }
 
-    
+
     /**
      * 功能说明: 生成签名,expireTime后过期
      * @param account  用户名
      * @param salt 盐值
      * @param time 过期时间s
      * @author dingxy
-     * @date 2021/2/27 11:01 下午 
+     * @date 2021/2/27 11:01 下午
      * @return 加密的token
      */
     public static String sign(String account, String salt, long time) {
@@ -92,7 +92,7 @@ public class JwtUtils {
     /**
      * 功能说明: 生成随机盐,长度32位
      * @author dingxy
-     * @date 2021/2/27 11:03 下午 
+     * @date 2021/2/27 11:03 下午
      * @return java.lang.String
      */
     /*public static String generateSalt() {

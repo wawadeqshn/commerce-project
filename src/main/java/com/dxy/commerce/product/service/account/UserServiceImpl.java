@@ -8,7 +8,6 @@ import com.dxy.commerce.product.domain.cache.RedisService;
 import com.dxy.commerce.product.dto.UserDTO;
 import com.dxy.commerce.product.exception.BusinessException;
 import com.dxy.commerce.product.mapper.UserMapper;
-import com.dxy.commerce.product.utils.JwtUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,8 +30,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserInfo> implement
 
     @Override
     public String generateJwtToken(String account) {
-
-        return JwtUtils.sign(account, this.getTokenSaltFromDB(account), SystemConstant.TOKEN_EXPIRES_SECONDS);
+        return "---";
+        //return JwtUtils.sign(account, this.getTokenSaltFromDB(account), SystemConstant.TOKEN_EXPIRES_SECONDS);
     }
 
     @Override
