@@ -10,13 +10,15 @@ import com.auth0.jwt.interfaces.JWTVerifier;
 import com.dxy.commerce.product.config.JwtConfigProperties;
 import com.dxy.commerce.product.constants.BusinessConstants;
 import org.apache.commons.lang3.StringUtils;
-import org.omg.CORBA.SystemException;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.Date;
 
+/**
+ * JWT工具类，用于对 token 进行验证
+ * @author dingxy
+ * @date 2021/3/15 11:00 下午
+ * @return 
+ */
 public class JWTUtil {
 
     /**
@@ -24,7 +26,42 @@ public class JWTUtil {
      * @param token 密钥
      * @return 是否正确
      */
-    public static boolean verify(String token, JwtConfigProperties jwtConfigProperties) throws Exception {
+    public static String verify(String token, JwtConfigProperties jwtConfigProperties) throws Exception {
+        try {
+            // 请求头中的token是空的
+            if(StringUtils.isBlank(token)){
+                return BusinessConstants.TOKEN_IS_NULL;  // 传递过来的token是空的
+            }
+            Algorithm algorithm = Algorithm.HMAC256(jwtConfigProperties.getSecret());
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            DecodedJWT jwt = verifier.verify(token);
+            System.out.println(jwt);
+            return BusinessConstants.TOKEN_SUCCESS;  // token验证成功
+        } catch (TokenExpiredException tokenExpiredException){
+            System.out.println("token已过期");
+            //throw new Exception(BusinessConstants.EXPIRED);
+            return BusinessConstants.TOKEN_EXPIRED;   // token已过期
+        } catch (SignatureVerificationException signatureVerificationException){
+            System.out.println("token签名失败");
+            //throw new Exception(BusinessConstants.SIGNATURE_VERIFICATION);
+            return BusinessConstants.TOKEN_SIGNATURE_VERIFICATION;   // token签名失败
+        } catch (JWTDecodeException jwtDecodeException){
+            System.out.println("token解析失败，请重新登录获取token");
+            //throw new Exception(BusinessConstants.DECODE_ERROR);
+            return BusinessConstants.TOKEN_DECODE_ERROR;   // token解析失败，请重新登录获取token IllegalArgumentException
+        } catch (IllegalArgumentException illegalArgumentException){
+            System.out.println("非法token，请先登录！");
+            //throw new Exception(BusinessConstants.DECODE_ERROR);
+            return BusinessConstants.TOKEN_ILLEGAL;   // 非法token，请先正常登陆
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            System.out.println("未登录");
+            //throw new Exception(BusinessConstants.NOT_LOGIN);
+            return BusinessConstants.TOKEN_NOT_LOGIN;   // 未登录
+        }
+    }
+
+    /*public static boolean verify(String token, JwtConfigProperties jwtConfigProperties) throws Exception {
         try {
             // 请求头中的token是空的
             if(StringUtils.isBlank(token)){
@@ -55,7 +92,7 @@ public class JWTUtil {
             //throw new Exception(BusinessConstants.NOT_LOGIN);
             throw new RuntimeException(BusinessConstants.NOT_LOGIN);
         }
-    }
+    }*/
 
     /**
      * 获得token中的信息无需secret解密也能获得

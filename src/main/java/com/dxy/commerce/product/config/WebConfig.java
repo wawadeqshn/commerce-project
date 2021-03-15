@@ -22,7 +22,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins("*")
                 .allowedHeaders("*")
                 .allowedMethods("*");
-        System.out.println("-----------跨域拦截--------------1--------------");
+        //System.out.println("-----------跨域拦截--------------1--------------");
     }
 
     public void addInterceptors(InterceptorRegistry registry) {
@@ -31,6 +31,6 @@ public class WebConfig implements WebMvcConfigurer {
         interceptorRegistration.addPathPatterns("/**");
         // 需放行的路径
         interceptorRegistration.excludePathPatterns("/**/login", "/**/unlogin","/common/error");
-        System.out.println("-----------请求路径拦截--------------2--------------");
+        //System.out.println("-----------请求路径拦截--------------2--------------");
     }
 }

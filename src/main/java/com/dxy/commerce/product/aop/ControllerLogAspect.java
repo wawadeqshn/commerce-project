@@ -19,8 +19,8 @@ import java.util.Arrays;
  * @author dingxy
  * @date 2021/2/27 4:48 下午
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 @Order(1)
 @Log4j2
 public class ControllerLogAspect {
