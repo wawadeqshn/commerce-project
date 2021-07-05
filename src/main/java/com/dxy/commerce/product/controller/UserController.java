@@ -89,16 +89,15 @@ public class UserController {
      */
     @RequestMapping("/get/all")
     @ApiOperation(value = "查询所有用户")
-    public ApiJson getAllUsers(){
-        List<TestTable> result = tableService.getAll();
+    public Result getAllUsers(){
+        //List<TestTable> result = tableService.getAll();
         //return result != null ? ApiJson.ok(result) : ApiJson.error();
-        return result != null ? ApiJson.ok(result) : ApiJson.ok();
-
-        /*try {
+        //return result != null ? ApiJson.ok(result) : ApiJson.ok();
+        try {
             List<TestTable> result = tableService.getAll();
             return Result.success(result);
         } catch (Exception e) {
-            return Result.failure(ResultCode.FAIL_LOGGING);
-        }*/
+            return Result.failure(ResultCode.SENSEDEAL_QUESTIONED);
+        }
     }
 }
